@@ -1,4 +1,7 @@
+import { Link } from "react-router-dom"
+
 export function Result(props) {
+    
     const {show} = props.details
     
     return(
@@ -7,6 +10,7 @@ export function Result(props) {
             //prévoir un rendu conditionnel  */}
             <img src={show.image?.medium || 'http://vignette3.wikia.nocookie.net/lego/images/a/ac/No-Image-Basic.png/revision/latest?cb=20130819001030' } />
             <h2>{show.name}</h2>
+            <Link to={'show/'+show.id}>Voir les infos</Link>
         </div>
     )
 }

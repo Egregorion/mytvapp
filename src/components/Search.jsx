@@ -15,7 +15,7 @@ export function Search() {
         <>
             <input type="text" onChange={(e) => setQuery(e.target.value)} value={query}/>
             {/* Boucler sur result[] pour afficher les résultats dans la page */}
-            {results.map((result)=><Result details={result}/>)}
+            {results.map((result)=><Result key={result.id} details={result}/>)}
         </>
         )
 }
