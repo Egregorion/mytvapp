@@ -1,16 +1,33 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 export function Show() {
     const params = useParams()
-
+    const [show, setShow] = useState([])
+    const [actors, setActors] = useState([])
+        
     useEffect(() => {
         fetch('https://api.tvmaze.com/shows/'+ params.id +'?embed=cast')
           .then((response) => response.json())
-          .then((data) => console.log(data))
-    })
+          .then((data) => { 
+            setShow(data)
+            setActors(data._embedded.cast)
+            }
+          )
+        }, [show]   
+    )
 
     return(
-        <h2>Cette page est la page avec l'id {params.id}</h2>
+        <div className="row">
+            <h2>{show.name}</h2>
+            <div className="col-12 col-md-6">
+                <img src={show.image?.medium} alt="" />
+            </div>
+            <div className="col-12 col-md-6">{show.summary}</div>
+            {actors.map((actor) => 
+                <Actor infos={actor}/>
+            )}
+        </div>
+        
     )
 }
