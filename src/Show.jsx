@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 export function Show() {
     const params = useParams()
@@ -25,7 +25,7 @@ export function Show() {
             </div>
             <div className="col-12 col-md-6">{show.summary}</div>
             {actors.map((actor) => 
-                <Actor infos={actor}/>
+                <li><Link to={'/actor/'+ actor.person.id}>{actor.person.name}</Link></li>
             )}
         </div>
         
